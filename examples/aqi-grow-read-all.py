@@ -111,7 +111,6 @@ try:
             print(f"Humidity: {sensor.data.humidity:.2f} %")
             print(f"Gas Resistance: {sensor.data.gas_resistance} Ohms -> AQI: {aqi_value}")
             print(f"Estimated CO2: {estimated_co2:.2f} ppm")
-   
             print(f"Moisture Sensor 1: {moisture_level_1:.2f} Hz -> Saturation: {saturation_level_1:.2f} %")
             print(f"Moisture Sensor 2: {moisture_level_2:.2f} Hz -> Saturation: {saturation_level_2:.2f} %")
             print(f"Moisture Sensor 3: {moisture_level_3:.2f} Hz -> Saturation: {saturation_level_3:.2f} %")
