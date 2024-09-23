@@ -31,12 +31,6 @@ m2 = Moisture(2)
 m3 = Moisture(3)
 
 # Helper functions for air quality calculation
-def gas_resistance_to_aqi(gas_resistance):
-    min_gas_resistance = 10
-    max_gas_resistance = 1400000
-    gas_resistance = max(min_gas_resistance, min(gas_resistance, max_gas_resistance))
-    aqi = 500 - int((gas_resistance - min_gas_resistance) / (max_gas_resistance - min_gas_resistance) * 499)
-    return aqi
 
 def aqi_to_co2(aqi):
     base_co2 = 400   # ppm for AQI 50 (typical outdoor clean air)
@@ -44,14 +38,7 @@ def aqi_to_co2(aqi):
     estimated_co2 = base_co2 + (max_co2 - base_co2) * (aqi / 500)
     return estimated_co2
 
-def gas_resistance_to_tvoc(gas_resistance):
-    min_gas_resistance = 10
-    max_gas_resistance = 1400000
-    gas_resistance = max(min_gas_resistance, min(gas_resistance, max_gas_resistance))
-    max_tvoc_ppb = 1000
-    min_tvoc_ppb = 0
-    tvoc = max_tvoc_ppb - ((gas_resistance - min_gas_resistance) / (max_gas_resistance - min_gas_resistance)) * max_tvoc_ppb
-    return tvoc
+
 
 # Collect burn-in data
 start_time = time.time()
@@ -102,11 +89,11 @@ try:
             air_quality_score = hum_score + gas_score
 
             # Convert gas resistance to AQI
-            aqi_value = air_quality_score(gas)
+            aqi_value = hum_score + gas_score
 
             # Estimate CO2 and TVOC based on AQI
             estimated_co2 = aqi_to_co2(aqi_value)
-            estimated_tvoc = gas_resistance_to_tvoc(gas)
+           
 
             # Read moisture sensor data
             moisture_level_1 = m1.moisture
@@ -124,7 +111,7 @@ try:
             print(f"Humidity: {sensor.data.humidity:.2f} %")
             print(f"Gas Resistance: {sensor.data.gas_resistance} Ohms -> AQI: {aqi_value}")
             print(f"Estimated CO2: {estimated_co2:.2f} ppm")
-            print(f"Estimated TVOC: {estimated_tvoc:.2f} ppb")
+   
             print(f"Moisture Sensor 1: {moisture_level_1:.2f} Hz -> Saturation: {saturation_level_1:.2f} %")
             print(f"Moisture Sensor 2: {moisture_level_2:.2f} Hz -> Saturation: {saturation_level_2:.2f} %")
             print(f"Moisture Sensor 3: {moisture_level_3:.2f} Hz -> Saturation: {saturation_level_3:.2f} %")
