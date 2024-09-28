@@ -1,10 +1,12 @@
+#!/usr/bin/env python
+
 import time
 import bme680
 from datetime import datetime
 from grow.moisture import Moisture
 
 print("""Combined Sensor Readings - Displays temperature, pressure, humidity, gas resistance, 
-estimated air quality, and moisture levels with saturation.
+estimated air quality, and soil moisture with saturation.
 
 Press Ctrl+C to exit!
 """)
@@ -39,12 +41,12 @@ def aqi_to_co2(aqi):
     return estimated_co2
 
 
-
 # Collect burn-in data
 start_time = time.time()
 curr_time = time.time()
 burn_in_time = 300
 burn_in_data = []
+
 
 try:
     print('Collecting gas resistance burn-in data for 5 mins\n')
