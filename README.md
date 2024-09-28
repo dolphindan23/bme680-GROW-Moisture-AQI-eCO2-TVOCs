@@ -1,4 +1,5 @@
-# BME680
+# BME680-688(fork)
+Example aqi-grow-read-all.py is the most up to date and gives the best estimates of the true values. This was designed for the 688 and without access to the Bosche AI Sttudio application. Ill actively be working on this fork so look out for more in the future.
 
 [![Build Status](https://img.shields.io/github/actions/workflow/status/pimoroni/bme680-python/test.yml?branch=main)](https://github.com/pimoroni/bme680-python/actions/workflows/test.yml)
 [![Coverage Status](https://coveralls.io/repos/github/pimoroni/bme680-python/badge.svg?branch=main)](https://coveralls.io/github/pimoroni/bme680-python?branch=main)
